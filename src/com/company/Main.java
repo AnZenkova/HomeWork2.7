@@ -11,17 +11,37 @@ public class Main {
         getEvenNumbers(nums);
         String text = "во поле березка стояла во поле кудрявая стояла";
         getListOfRepeatedWords(text);
+        System.out.println();
+        getListOfRepeatedWordsNumber(text);
+    }
+
+    private static void getListOfRepeatedWordsNumber(String text) {
+        List<String> wordsAll = new ArrayList<String>(List.of(text.split(" ")));
+        Map<String, Integer> wordsRepeatedNumber = new HashMap<>(Map.of());
+        for (int i = 0; i < wordsAll.size(); i++) {
+            String word = null;
+            int c = 1;
+            for (int j = i + 1; j < wordsAll.size(); j++) {
+                if (wordsAll.get(i).contains(wordsAll.get(j))) {
+                    word = wordsAll.get(i);
+                    wordsAll.remove(j);
+                    c++;
+                }
+            }
+            if (c > 1) {
+                wordsRepeatedNumber.put(word, c);
+            }
+        }
+        System.out.println(wordsRepeatedNumber.toString());
     }
 
     private static void getListOfRepeatedWords(String text) {
         List<String> wordsAll = new ArrayList<String>(List.of(text.split(" ")));
-        List<String> wordsRepeated = new ArrayList<String>(List.of());
+        Set<String> wordsRepeated = new HashSet<>(List.of());
         for (int i = 0; i < wordsAll.size(); i++) {
-            int c = 0;
             for (int j = i + 1; j < wordsAll.size(); j++) {
                 if (wordsAll.get(i).contains(wordsAll.get(j))) {
-                    wordsRepeated.add(wordsAll.get(i));
-                    c++;
+                        wordsRepeated.add(wordsAll.get(i));
                 }
             }
         }
