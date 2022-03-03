@@ -9,6 +9,23 @@ public class Main {
         getOddNumbers(nums);
         System.out.println();
         getEvenNumbers(nums);
+        String text = "во поле березка стояла во поле кудрявая стояла";
+        getListOfRepeatedWords(text);
+    }
+
+    private static void getListOfRepeatedWords(String text) {
+        List<String> wordsAll = new ArrayList<String>(List.of(text.split(" ")));
+        List<String> wordsRepeated = new ArrayList<String>(List.of());
+        for (int i = 0; i < wordsAll.size(); i++) {
+            int c = 0;
+            for (int j = i + 1; j < wordsAll.size(); j++) {
+                if (wordsAll.get(i).contains(wordsAll.get(j))) {
+                    wordsRepeated.add(wordsAll.get(i));
+                    c++;
+                }
+            }
+        }
+        System.out.println(wordsRepeated.toString());
     }
 
     private static void getEvenNumbers(List<Integer> nums) {
